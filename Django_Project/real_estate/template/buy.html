@@ -1,0 +1,105 @@
+{% extends 'base.html' %} 
+{% block head %}
+<style>
+.float-container {
+  align-items: center;
+  position: fixed ;
+  bottom: 0;
+  /* border: 3px solid #fff; */
+  offset-distance: 10px;
+  padding: 15px;
+}
+
+.float-child {
+  align-items: center;
+  position: fixed ;
+  bottom: 0;
+  right: 0;
+  /* border: 3px solid #fff; */
+  offset-distance: 10px;
+  padding: 15px;
+}  
+</style>
+{% endblock head %} 
+
+{% block body %}
+
+<body class="" style="background-color: #7395AE ">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+
+<ul>
+<table class="table table-inverse">
+  <thead class="thead-dark">
+    <tr>
+      {% for a in thead%}
+      <th scope="col"><h2 style="color:white">{{a}}</h2></th>
+      {% endfor %}
+    </tr>
+  </thead>
+  <tbody>
+      <!-- <th scope="row">1</th> -->
+      {% for user in users%}
+      <tr>
+        <!-- https://source.unsplash.com/1600x600/?house -->
+      <td>
+        <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=600&ixid=MnwxfDB8MXxyYW5kb218MHx8aG91c2V8fHx8fHwxNjczNzUyNjA4&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1600"  width="700"  class="figure-img img-fluid rounded" alt="Alps">
+        
+      </td>
+      {% for u in user%}
+      
+      <td><h3 style="color:#DFE0E2">{{u}}</h3></td>
+      {% endfor %}
+    </tr>
+      {% endfor %}
+    
+
+  </div>
+</div>
+
+</ul>
+
+
+
+
+
+
+
+
+<div class="float-container">
+<form action="http://localhost:8000/bought/" method="post">
+    {% csrf_token %} {% load static %}
+
+    <div class="input-group">
+        <!-- <span class="input-group-text" style="border-radius: 50%;font-family:'Cursive'">User ID and Property ID</span> -->
+        <input type="text" style="border-radius: 50%; text-align: center;" placeholder="User ID"aria-label="buyer_id" class="buyerid" name = "buyer_id" required/>
+        <input type="text" style="border-radius: 50% ;text-align:center; " placeholder="Property ID" aria-label="pid" class="propertyid" name = "pid" required/> 
+        <button type="submit" style="border-radius: 50%;" class="btn btn-success btn-lg " style="background-color: #A2AEBB;">BUY / RENT</button>
+</div> 
+</form>
+</div>
+
+
+
+<div class="float-child">
+  <form action="http://localhost:8000/sort/" method="post">
+      {% csrf_token %} {% load static %}
+<div class="input-group">
+   <select name='location' class="select" style="border-radius: 50%; background-color: #A2AEBB; color:white">
+     <option value="1">Location</option>
+     <option value="Bangalore">Bangalore</option>
+     <option value="Delhi">Delhi</option>
+     <option value="Varanasi">Varanasi</option>
+   </select>
+   <button type="submit" style="border-radius: 50%;" class="btn btn-success btn-lg " style="background-color: #A2AEBB;">Sort</button>
+
+  </form>
+
+</div>
+</div>
+
+
+</body>
+
+{% endblock body%} 
+
